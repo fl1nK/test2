@@ -1,27 +1,29 @@
 import * as http from 'node:http'
 import * as url from 'url'
-import { VercelRequest, VercelResponse } from '@vercel/node'
+//import { VercelRequest, VercelResponse } from '@vercel/node'
+import pkg from '@vercel/node'
+const { VercelRequest, VercelResponse } = pkg
 
-const server = http.createServer((req, res) => {
-  const urlParts = url.parse(req.url)
+const server = http.createServer((VercelRequest, VercelResponse) => {
+  const urlParts = url.parse(VercelRequest.url)
   console.log(urlParts.pathname)
 
-  if (req.method === 'GET') {
+  if (VercelRequest.method === 'GET') {
     switch (urlParts.pathname) {
       case '/':
-        res.end('home')
+        VercelResponse.end('home')
         break
       case '/api':
-        res.end(JSON.stringify({ name: `hello` }))
+        VercelResponse.end(JSON.stringify({ name: `hello` }))
         break
       case '/api/hello':
-        res.end(JSON.stringify({ name: `hello` }))
+        VercelResponse.end(JSON.stringify({ name: `hello` }))
         break
       case '/hello':
-        res.end(JSON.stringify({ name: `hello` }))
+        VercelResponse.end(JSON.stringify({ name: `hello` }))
         break
       default:
-        res.end('404')
+        VercelResponse.end('404')
         break
     }
   }

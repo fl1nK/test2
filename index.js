@@ -17,6 +17,7 @@ const server = http.createServer((req, res) => {
 })
 
 function homepage(req, res) {
+  res.writeHead(200, { 'Content-Type': 'text/html' })
   res.end('homepage')
 }
 

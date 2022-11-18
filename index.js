@@ -1,13 +1,13 @@
 import * as http from 'node:http'
 
 const server = http.createServer((req, res) => {
-  // eslint-disable-next-line eqeqeq
-  if (req.method == 'GET') {
+  if (req.method === 'GET') {
     switch (res.url) {
       case '/':
+        res.writeHead(200, { 'Content-Type': 'text/plain' })
         res.end('home')
         break
-      case '/hello':
+      case '/api/hello':
         res.end('hello')
         break
       default:

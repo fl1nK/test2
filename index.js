@@ -14,20 +14,11 @@ const server = http.createServer((req, res) => {
         break
       case '/hello':
         res.writeHead(200, { 'Content-Type': 'application/json' })
-        res.end(
-          JSON.stringify({
-            message: 'hello',
-            method: 'GET',
-          })
-        )
+        res.end(JSON.stringify({ message: 'hello', method: 'GET' }))
         break
       default:
         res.writeHead(404, { 'Content-Type': 'application/json' })
-        res.end(
-          JSON.stringify({
-            message: 'Route Not Found',
-          })
-        )
+        res.end(JSON.stringify({ message: 'Route Not Found' }))
         break
     }
   } else if (req.method === 'POST') {
@@ -38,20 +29,11 @@ const server = http.createServer((req, res) => {
         break
       case '/hello':
         res.writeHead(200, { 'Content-Type': 'application/json' })
-        res.end(
-          JSON.stringify({
-            message: 'hello',
-            method: 'POST',
-          })
-        )
+        res.end(JSON.stringify({ message: 'hello', method: 'POST' }))
         break
       default:
         res.writeHead(404, { 'Content-Type': 'application/json' })
-        res.end(
-          JSON.stringify({
-            message: 'Route Not Found',
-          })
-        )
+        res.end(JSON.stringify({ message: 'Route Not Found' }))
         break
     }
   }

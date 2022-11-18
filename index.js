@@ -2,7 +2,6 @@ import * as http from 'node:http'
 import url from 'url'
 
 const server = http.createServer((req, res) => {
-  // eslint-disable-next-line n/no-deprecated-api
   const path = url.parse(req.url).pathname
   if (req.method === 'GET') {
     switch (path) {

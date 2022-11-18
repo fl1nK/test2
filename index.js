@@ -1,5 +1,6 @@
-/* eslint-disable sonarjs/no-duplicate-string */
 /* eslint-disable n/no-deprecated-api */
+/* eslint-disable sonarjs/no-duplicate-string */
+
 import * as http from 'node:http'
 import url from 'url'
 

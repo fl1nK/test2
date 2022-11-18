@@ -2,7 +2,8 @@ import * as http from 'node:http'
 import url from 'url'
 
 const server = http.createServer((req, res) => {
-  const path = url.parse(req.url).pathname
+  const path = url.URL(req.url).pathname
+
   if (req.method === 'GET') {
     switch (path) {
       case '/':
@@ -10,10 +11,16 @@ const server = http.createServer((req, res) => {
         res.end('home')
         break
       case '/api/hello':
+        res.writeHead(200, { 'Content-Type': 'text/plain' })
         res.end('hello')
         break
       default:
-        res.end('404')
+        res.writeHead(404, { 'Content-Type': 'application/json' })
+        res.end(
+          JSON.stringify({
+            message: 'Route Not Found',
+          })
+        )
         break
     }
   }
@@ -21,6 +28,6 @@ const server = http.createServer((req, res) => {
 
 server.listen(parseInt(process.env.PORT) || 3000)
 
-server.on('clientError', (_err, socket) => {
-  socket.end('HTTP/1.1 400 Bad Request\r\n\r\n')
+process.on('SIGINT', async () => {
+  process.exit(0)
 })

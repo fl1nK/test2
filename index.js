@@ -1,4 +1,4 @@
-import * as http from 'node:http'
+import http from 'node:http'
 
 const server = http.createServer((req, res) => {
   if (req.url === '/' && req.method === 'GET') {

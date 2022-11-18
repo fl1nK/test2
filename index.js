@@ -1,9 +1,10 @@
-import http from 'http'
+import http from 'node:http'
 
 const PORT = 3000
 
 const server = http.createServer((req, res) => {
   if (req.url === '/' && req.method === 'GET') {
+    res.writeHead(200, { 'Content-Type': 'text/plain' })
     res.end('Homepage')
   } else {
     res.end(
@@ -19,8 +20,5 @@ server.listen(PORT, () => {
 })
 
 process.on('SIGINT', async () => {
-  console.log()
-  console.log('Gracefull shutdown')
-  console.log('End')
   process.exit(0)
 })

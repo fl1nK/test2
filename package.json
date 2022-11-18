@@ -14,17 +14,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fl1nK/test.git"
+    "url": "git+https://github.com/fl1nK/test2.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fl1nK/test/issues"
+    "url": "https://github.com/fl1nK/test2/issues"
   },
-  "homepage": "https://github.com/fl1nK/test#readme",
+  "homepage": "https://github.com/fl1nK/test2#readme",
   "devDependencies": {
-    "@vercel/node": "^2.6.3",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",

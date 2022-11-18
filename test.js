@@ -36,6 +36,7 @@ process.on('SIGINT', () => {
   server.close((error) => {
     if (error) {
       console.error(error)
+      // eslint-disable-next-line n/no-process-exit
       process.exit(1)
     }
   })

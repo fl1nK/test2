@@ -1,4 +1,7 @@
 import http from 'node:http'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const server = http.createServer((req, res) => {
   if (req.method === 'GET') {

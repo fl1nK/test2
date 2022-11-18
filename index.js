@@ -2,10 +2,10 @@ import http from 'node:http'
 
 const server = http.createServer((req, res) => {
   if (req.url === '/' && req.method === 'GET') {
-    res.writeHead(200, { 'Content-Type': 'text/plain' })
+    //res.writeHead(200, { 'Content-Type': 'text/plain' })
     res.end('Homepage')
   } else if (req.url === '/hello' && req.method === 'GET') {
-    res.writeHead(200, { 'Content-Type': 'text/plain' })
+    //res.writeHead(200, { 'Content-Type': 'text/plain' })
     res.end('hello')
   } else {
     res.end(

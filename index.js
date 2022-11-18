@@ -1,42 +1,13 @@
-import http from 'node:http'
-import dotenv from 'dotenv'
+module.exports = (req, res) => {
+  let who = 'anonymous'
 
-dotenv.config()
-
-const server = http.createServer((req, res) => {
-  if (req.method === 'GET') {
-    switch (req.url) {
-      case '/':
-        homepage(req, res)
-        break
-      case '/hello':
-        hello(req, res)
-        break
-      case '/hello2':
-        homepage(req, res)
-        break
-    }
+  if (req.body && req.body.who) {
+    who = req.body.who
+  } else if (req.query.who) {
+    who = req.query.who
+  } else if (req.cookies.who) {
+    who = req.cookies.who
   }
-})
 
-function homepage(req, res) {
-  res.writeHead(200, { 'Content-Type': 'text/html' })
-  res.end('homepage')
+  res.status(200).send(`Hello ${who}!`)
 }
-
-function hello(req, res) {
-  res.end('hello')
-}
-server.on('clientError', (_err, socket) => {
-  socket.end('HTTP/1.1 400 Bad Request\r\n\r\n')
-})
-server.listen(parseInt(process.env.PORT) || 3000)
-
-process.on('SIGINT', () => {
-  server.close((error) => {
-    if (error) {
-      console.error(error)
-      process.exit(1)
-    }
-  })
-})

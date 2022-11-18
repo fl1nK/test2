@@ -1,7 +1,5 @@
 import http from 'node:http'
 
-const PORT = 3000
-
 const server = http.createServer((req, res) => {
   if (req.url === '/' && req.method === 'GET') {
     res.writeHead(200, { 'Content-Type': 'text/plain' })
@@ -19,10 +17,16 @@ const server = http.createServer((req, res) => {
   }
 })
 
-server.listen(PORT, () => {
-  console.log(`Server running at port ${PORT}`)
+server.on('clientError', (_err, socket) => {
+  socket.end('HTTP/1.1 400 Bad Request\r\n\r\n')
 })
+server.listen(parseInt(process.env.PORT) || 8000)
 
-process.on('SIGINT', async () => {
-  process.exit(0)
+process.on('SIGINT', () => {
+  server.close((error) => {
+    if (error) {
+      console.error(error)
+      process.exit(1)
+    }
+  })
 })

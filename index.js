@@ -8,6 +8,7 @@ const server = http.createServer((req, res) => {
     res.end('Homepage')
   } else {
     res.end(
+      res.writeHead(404, { 'Content-Type': 'application/json' }),
       JSON.stringify({
         message: 'Route Not Found',
       })

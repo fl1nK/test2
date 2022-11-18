@@ -1,3 +1,5 @@
+/* eslint-disable sonarjs/no-duplicate-string */
+/* eslint-disable n/no-deprecated-api */
 import * as http from 'node:http'
 import url from 'url'
 
@@ -10,9 +12,14 @@ const server = http.createServer((req, res) => {
         res.writeHead(200, { 'Content-Type': 'text/plain' })
         res.end('home')
         break
-      case '/api/hello':
-        res.writeHead(200, { 'Content-Type': 'text/plain' })
-        res.end('hello')
+      case '/hello':
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(
+          JSON.stringify({
+            message: 'hello',
+            method: 'GET',
+          })
+        )
         break
       default:
         res.writeHead(404, { 'Content-Type': 'application/json' })
@@ -29,9 +36,14 @@ const server = http.createServer((req, res) => {
         res.writeHead(200, { 'Content-Type': 'text/plain' })
         res.end('home POST')
         break
-      case '/api/hello':
-        res.writeHead(200, { 'Content-Type': 'text/plain' })
-        res.end('hello POST')
+      case '/hello':
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(
+          JSON.stringify({
+            message: 'hello',
+            method: 'POST',
+          })
+        )
         break
       default:
         res.writeHead(404, { 'Content-Type': 'application/json' })
